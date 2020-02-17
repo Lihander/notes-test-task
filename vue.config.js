@@ -1,7 +1,7 @@
 module.exports = {
   // options...
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/'
+    ? '/notes-test-task'
     : '/',
   assetsDir: '',
   filenameHashing: true,
