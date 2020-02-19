@@ -78,7 +78,11 @@
     },
     computed: {
       isNoteChanged() {
-        return JSON.stringify(this.oldNote) !== JSON.stringify(this.note)
+        if (JSON.stringify(this.oldNote) !== JSON.stringify(this.note)) {
+          this.canCancelDiscard = false
+          return true
+        }
+        return false
       }
     },
     methods: {
@@ -104,11 +108,11 @@
       },
       discardChange() {
         this.newNote = this.note
-        this.note = this.oldNote
+        this.note = JSON.parse(JSON.stringify(this.oldNote))
         this.canCancelDiscard = true
       },
       cancelDiscardChange() {
-        this.oldNote = this.note
+        this.oldNote = JSON.parse(JSON.stringify(this.note))
         this.note = this.newNote
         this.canCancelDiscard = false
       },
